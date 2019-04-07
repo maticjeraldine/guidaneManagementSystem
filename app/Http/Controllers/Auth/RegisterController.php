@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,11 +50,31 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $error = Validator::make($data, [
+            // 'image'         => isset($data['middle_name']) 
+            //                     ? ['required', 'image|mimes:jpeg,png,jpg,gif,svg|max:2048']
+            //                     : [],
+            'image'         => isset($data['middle_name']) ? ['required'] : [],
+            'first_name'    => ['required', 'string', 'max:255'],
+            'middle_name'   => isset($data['middle_name']) ? ['required', 'string', 'max:255'] : [],
+            'last_name'     => ['required', 'string', 'max:255'],
+            'course'        => isset($data['course']) ? ['required', 'string', 'max:255'] : [],
+            'year'          => isset($data['year']) ? ['required'] : [],
+            'semester'      => isset($data['semester']) ? ['required', 'string', 'max:255'] : [],
+            'gender'        => isset($data['gender']) ? ['required', 'string', 'max:255'] : [],
+            'birth_date'    => isset($data['birth_date']) ? ['required', 'string', 'max:255'] : [],
+            'birth_place'   => isset($data['birth_place']) ? ['required', 'string', 'max:255'] : [],
+            'nationality'   => isset($data['nationality']) ? ['required', 'string', 'max:255'] : [],
+            'contact'       => isset($data['contact']) ? ['required', 'string', 'max:255'] : [],
+            'address_city'  => isset($data['address_city']) ? ['required', 'string', 'max:255'] : [],
+            'address_provincial'  => isset($data['address_provincial']) ? ['required', 'string', 'max:255'] : [],
+            'others'        => isset($data['address_provincial']) ? ['required'] : [],
+            'role'          => ['required', 'string', 'max:255'],
+            'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        return $error;
     }
 
     /**
@@ -63,10 +85,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'email'     => $data['email'],
+            'role'      => $data['role'],
+            'password'  => Hash::make($data['password']),
         ]);
+
+        $profile = Profile::create([
+            'image'             => isset($data['image']) ? $data['image'] : null,
+            'first_name'        => $data['first_name'],
+            'middle_name'       => isset($data['middle_name']) ? $data['middle_name'] : null,
+            'last_name'         => $data['last_name'],
+            'course'            => isset($data['course']) ? $data['course'] : null,
+            'year'              => isset($data['year']) ? $data['year'] : null,
+            'semester'          => isset($data['semester']) ? $data['semester'] : null,
+            'gender'            => isset($data['gender']) ? $data['gender'] : null,
+            'birth_date'        => isset($data['birth_date']) ? $data['birth_date'] : null,
+            'birth_place'       => isset($data['birth_place']) ? $data['birth_place'] : null,
+            'nationality'       => isset($data['nationality']) ? $data['nationality'] : null,
+            'contact'           => isset($data['contact']) ? $data['contact'] : null,
+            'address_city'      => isset($data['address_city']) ? $data['address_city'] : null,
+            'address_provincial' => isset($data['address_provincial']) ? $data['address_provincial'] : null,
+            'email'             => $data['email'],
+            'user_id'           => $user->id,
+            'others'            => isset($data['others']) ? json_encode($data['others']) : null,
+        ]);
+
+        return $user;
     }
 }

@@ -11,7 +11,7 @@
 */
 
 Route::get('/', function () {
-	$view = 'welcome';
+	$view = 'index';
 	if (Auth::user()) {
 		$view = '/layouts/profile/index';
 	}
