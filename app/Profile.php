@@ -35,4 +35,9 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function violation()
+    {
+        return $this->hasMany(Violation::class);
+    }
 }
