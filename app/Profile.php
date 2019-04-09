@@ -38,6 +38,6 @@ class Profile extends Model
 
     public function violation()
     {
-        return $this->hasMany(Violation::class);
+        return $this->belongsToMany(Violation::class);
     }
 }

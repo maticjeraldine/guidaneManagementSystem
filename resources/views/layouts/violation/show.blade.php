@@ -11,7 +11,15 @@ violation
 
 <label for="#link-student">Link Student</label>
 <br>
-<span>Richard, Jou</span>
+
+<div class="mb-2">
+    @foreach($violators as $violator)
+        <span class="btn btn-info text-white">
+            {{$violator->last_name}}, {{$violator->first_name}} 
+        </span>
+    @endforeach
+</div>
+
 <form method="post">
     @csrf
 
@@ -19,7 +27,14 @@ violation
     <select class="custom-select" id="link-student" name="user_id">
         <option value="" selected disabled>Link Student</option>
         @foreach($users as $user)
-            <option value="{{$user->id}}">{{$user->last_name}}, {{$user->first_name}}</option>
+            <option 
+                value="{{$user->id}}"
+                @if(isset($user->class))
+                    {{$user->class}}
+                @endif
+            >
+                {{$user->last_name}}, {{$user->first_name}}
+            </option>
         @endforeach
     </select>
 </form>

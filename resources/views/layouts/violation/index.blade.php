@@ -11,15 +11,10 @@ violation
     </button>
 </a>
 <table class="table table-hover">
-
     <thead>
-
       <th>Image</th>
-
       <th>Description</th>
-
-      <th>Students</th>
-      <th>id</th>
+      <th>Action</th>
     </thead>
 
     <tbody>
@@ -29,8 +24,9 @@ violation
 					  	<img src="{{url('/public/storage/'.$violation->image)}}" alt="">
 	              	</td>
 		          	<td>{{$violation->description}}</td>
-					<td><button>add student</button></td>
-					<td><a href="/violation/show/{{$violation->id}}">view violation</a></td>
+					    <td>
+                            <a href="/violation/show/{{$violation->id}}">view</a>
+                        </td>
 		        </tr>
 		@endforeach
     </tbody>

@@ -72,7 +72,12 @@ class ViolationController extends Controller
      */
     public function show($id)
     {
-        $violation = VIolation::find($id);
+        $violation = Violation::find($id);
+        $violators = DB::table('profile_violation')
+            ->select(DB::raw('*'))
+            ->join('profiles', 'profile_violation.profile_id', '=', 'profiles.id')
+            ->where('violation_id', $id)
+            ->get();
 
         $users = DB::table('users')
             ->join('profiles', 'users.id', '=', 'profiles.user_id')
@@ -80,7 +85,18 @@ class ViolationController extends Controller
             ->orderBy('last_name')
             ->get();
 
-            return view('/layouts/violation/show', compact('violation', 'users'));
+        $violatorIDs = [];
+        foreach ($violators as $violator) {
+            array_push($violatorIDs, $violator->profile_id);
+        }
+
+        foreach ($users as $user) {
+            if(in_array($user->id, $violatorIDs)) {
+                $user->class = "disabled";
+            }
+        }
+
+        return view('/layouts/violation/show', compact('violation', 'users', 'violators'));
     }
 
     /**
@@ -108,9 +124,12 @@ class ViolationController extends Controller
             'user_id'=> 'required'
         ]);
 
-        $violation = Violation::find($id);
+        $profile = Profile::find($request->get('user_id'));
 
-        dd($violation);
+        // $violation->profile()->attach($request->get('violation_id'));
+        $profile->violation()->attach($request->get('violation_id'));
+        return back()
+            ->with('success','Linking Stundent...');
     }
 
     /**
