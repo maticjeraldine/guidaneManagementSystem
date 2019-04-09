@@ -17,7 +17,7 @@ class CreateViolationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('image');
             $table->longText('description');
-            $table->integer('profile_id');
+            $table->integer('profile_id')->nullable();
             $table->timestamps();
         });
     }

@@ -1,25 +1,38 @@
+@extends('master')
+
+@section('page_title')
+violation
+@endsection
+
+@section('content')
+<a href="/violation/create" class="link-untyled">
+    <button type="button" class="btn btn-primary">
+        Create Violation
+    </button>
+</a>
 <table class="table table-hover">
 
     <thead>
 
-      <th>Username</th>
+      <th>Image</th>
 
-      <th>Orders</th>
+      <th>Description</th>
 
-      <th>Balance</th>
-
+      <th>Students</th>
+      <th>id</th>
     </thead>
 
     <tbody>
-		@foreach($profiles as $profile)
-
+		@foreach($violations as $violation)
 		        <tr>
-
-		          <td>{{$profile->first_name}} </td>
-
+		          	<td>
+					  	<img src="{{url('/public/storage/'.$violation->image)}}" alt="">
+	              	</td>
+		          	<td>{{$violation->description}}</td>
+					<td><button>add student</button></td>
+					<td><a href="/violation/show/{{$violation->id}}">view violation</a></td>
 		        </tr>
 		@endforeach
-
     </tbody>
-
 </table>
+@endsection

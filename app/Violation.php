@@ -19,6 +19,6 @@ class Violation extends Model
 
   	public function profile()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsToMany(Profile::class);
     }
 }

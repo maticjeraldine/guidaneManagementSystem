@@ -69,7 +69,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+       //
     }
 
     /**

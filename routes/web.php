@@ -12,9 +12,9 @@
 
 Route::get('/', function () {
 	$view = 'index';
-	if (Auth::user()) {
-		$view = '/layouts/profile/index';
-	}
+	// if (Auth::user()) {
+	// 	$view = '/layouts/profile/index';
+	// }
 
     return view($view);
 });
@@ -22,4 +22,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// violation
 Route::get('/violation', 'ViolationController@index');
+Route::get('/violation/create', 'ViolationController@create');
+Route::post('/violation/store', 'ViolationController@store');
+Route::get('/violation/show/{id}', 'ViolationController@show');
+
+// profile routes
+Route::post('/violation/update/{id}', 'ViolationController@update');
+
+
