@@ -12,11 +12,13 @@
 
 Route::get('/', function () {
 	$view = 'index';
-	// if (Auth::user()) {
-	// 	$view = '/layouts/profile/index';
-	// }
+	if (isset(Auth::user()->role) && Auth::user()->role === "admin") {
+		return redirect('/violation');
+	} else {
+		return redirect('/violation');
+	}
 
-    return view($view);
+	return view($view);
 });
 
 Auth::routes();
