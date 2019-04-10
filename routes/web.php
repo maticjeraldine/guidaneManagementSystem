@@ -12,11 +12,16 @@
 
 Route::get('/', function () {
 	$view = 'index';
-	// if (Auth::user()) {
-	// 	$view = '/layouts/profile/index';
-	// }
 
-    return view($view);
+	if (isset(Auth::user()->role) && Auth::user()->role === "admin") {
+		return redirect('/violation');
+	}
+	
+	if(isset(Auth::user()->role) && Auth::user()->role === "student") {
+		return redirect('/student-profile');
+	}
+
+	return view($view);
 });
 
 Auth::routes();
@@ -28,8 +33,15 @@ Route::get('/violation', 'ViolationController@index');
 Route::get('/violation/create', 'ViolationController@create');
 Route::post('/violation/store', 'ViolationController@store');
 Route::get('/violation/show/{id}', 'ViolationController@show');
-
-// profile routes
 Route::post('/violation/update/{id}', 'ViolationController@update');
+
+// profile reoute
+Route::get('/student', 'ProfileController@student');
+Route::get('/profile/admin', 'ProfileController@index');
+Route::get('/student/show/{id}', 'ProfileController@studentShow');
+
+
+// student
+Route::get('/student-profile', 'StudentController@index');
 
 

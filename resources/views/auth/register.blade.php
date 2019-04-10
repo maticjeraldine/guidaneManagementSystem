@@ -17,7 +17,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         @include('auth.admin')
@@ -25,7 +25,7 @@
                     </form>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
 </div>
 @endsection
@@ -76,5 +76,11 @@
             $('.admin-form').removeClass('hidden');
         }
     }
+
+    // // on submit
+    // $('button[type="submit"]').on('submit', function(e) {
+    //     e.preventDefault();
+    //     console.log('aw');
+    // });
 </script>
 @endsection
