@@ -29,12 +29,8 @@
                 @guest
                 @else
                 <ul class="navbar-nav mr-auto">
-                @if(Auth::user()->role === 'student')
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/violation/create">Report Violations</a>
-                    </li>
-                @else
-                <!-- Left Side Of Navbar -->
+                @if(Auth::user()->role === 'superadmin')
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/violation">Violations</a>
                     </li>
@@ -44,6 +40,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Reports</a>
                     </li>
+
+                @else
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/violation/create">Report Violations</a>
+                    </li>
+
                 @endif
                 </ul>
                 @endguest

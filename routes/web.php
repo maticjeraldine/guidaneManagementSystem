@@ -13,12 +13,16 @@
 Route::get('/', function () {
 	$view = 'index';
 
-	if (isset(Auth::user()->role) && Auth::user()->role === "admin") {
+	if (isset(Auth::user()->role) && Auth::user()->role === "superadmin") {
 		return redirect('/violation');
 	}
 	
 	if(isset(Auth::user()->role) && Auth::user()->role === "student") {
 		return redirect('/student-profile');
+	}
+	
+	if(isset(Auth::user()->role) && Auth::user()->role === "admin") {
+		return redirect('/admin');
 	}
 
 	return view($view);
@@ -44,4 +48,5 @@ Route::get('/student/show/{id}', 'ProfileController@studentShow');
 // student
 Route::get('/student-profile', 'StudentController@index');
 
-
+// Admin
+Route::get('/admin', 'HomeController@admin');

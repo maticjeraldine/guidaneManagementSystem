@@ -12,7 +12,7 @@ violation
 <div class="mb-5">
     <p>{{$violation->description}}</p>
 </div>
-@if(Auth::user()->role == "admin")
+@if(Auth::user()->role == "superadmin")
 
     <label for="#link-student">Link Student</label>
     <br>
