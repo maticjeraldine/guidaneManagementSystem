@@ -5,9 +5,13 @@ violation
 @endsection
 
 @section('content')
-<h1>{{$violation->id}}</h1>
-<img src="{{$violation->image}}" alt="">
-<p>{{$violation->description}}</p>
+<div class="mb-5">
+    <img src="/storage/{{$violation->image}}" alt="">
+</div>
+
+<div class="mb-5">
+    <p>{{$violation->description}}</p>
+</div>
 
 <label for="#link-student">Link Student</label>
 <br>
@@ -20,7 +24,7 @@ violation
     @endforeach
 </div>
 
-<form method="post">
+<form method="post" class="mb-5">
     @csrf
 
     <input type="hidden" name="violation_id" value="{{$violation->id}}">

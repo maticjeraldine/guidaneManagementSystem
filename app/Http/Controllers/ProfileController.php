@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +93,22 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    /**
+     *  Display Student listing
+     * 
+     *  @param \App\Profile $profile
+     *  @return \Illuminate\Http\Response
+     */
+    public function student() 
+    {
+        $students = DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->where('role', 'student')
+        ->orderBy('last_name')
+        ->get();
+
+        return view('/layouts/profile/student', compact('students'));
     }
 }

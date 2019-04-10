@@ -21,12 +21,12 @@ violation
 		@foreach($violations as $violation)
 		        <tr>
 		          	<td>
-					  	<img src="{{url('/public/storage/'.$violation->image)}}" alt="">
+                        <img src="/storage/{{$violation->image}}" alt="">
 	              	</td>
 		          	<td>{{$violation->description}}</td>
-					    <td>
-                            <a href="/violation/show/{{$violation->id}}">view</a>
-                        </td>
+                    <td>
+                        <a href="/violation/show/{{$violation->id}}">view</a>
+                    </td>
 		        </tr>
 		@endforeach
     </tbody>
