@@ -42,11 +42,12 @@ Route::post('/violation/update/{id}', 'ViolationController@update');
 // profile reoute
 Route::get('/student', 'ProfileController@student');
 Route::get('/profile/admin', 'ProfileController@index');
-Route::get('/student/show/{id}', 'ProfileController@studentShow');
+Route::get('/profile/show/{id}', 'ProfileController@show');
 
 
 // student
 Route::get('/student-profile', 'StudentController@index');
+Route::get('/student/show/{id}', 'ProfileController@studentShow');
 
 // Admin
 Route::get('/admin', 'HomeController@admin');

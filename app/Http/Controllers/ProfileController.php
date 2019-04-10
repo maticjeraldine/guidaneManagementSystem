@@ -56,9 +56,11 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show($id)
     {
-        //
+        $profile = Profile::find($id);
+
+        return view('/layouts/profile/show', compact('profile'));
     }
 
     /**

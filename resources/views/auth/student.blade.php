@@ -23,7 +23,7 @@
 							class="form-control {{ $errors->has('first_name') ? ' is-invalid' : '' }}"
 							name="first_name" 
 							placeholder="First Name" 
-							type="type" 
+							type="type"
 						>
 					</div>
 					<div class="col-md-4 form-group">

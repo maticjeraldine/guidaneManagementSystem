@@ -7,6 +7,7 @@
 	width: 100%;
 }
 
+.form-group span,
 .form-group input {
     border: 0;
     border-bottom: 1px solid #909090;
@@ -21,10 +22,6 @@ body
 
 table tbody tr {
 	height: 3rem;
-}
-
-table.violation td:first-child {
-  /* width: 33%; */
 }
 
 img {

@@ -8,7 +8,12 @@ Profile
 <div class="row justify-content-center student-profile">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Register') }}</div>
+            <div class="card-header">
+            {{ __('Register') }}
+            <a href="/profile/show/{{$profile->id}}" class="btn btn-info float-right text-white">
+                Edit
+            </a>
+            </div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -17,16 +22,7 @@ Profile
 
                         <div class="imgUp">
                             <div class="imagePreview">
-                                <label class="btn btn-primary">
-                                    Upload
-                                    <input 
-                                        class="uploadFile img" 
-                                        name="image" 
-                                        style="width: 0px;height: 0px;overflow: hidden;"
-                                        type="file" 
-                                        value="Upload Photo"
-                                    >
-                                </label>
+                                <img src="/storange/{{$profile->image}}" alt="">
                             </div>
                         </div>
 
@@ -34,76 +30,28 @@ Profile
                             <div class="w-100 text-center">
                                 <div class="row">
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('first_name') ? ' is-invalid' : '' }}"
-                                            name="first_name" 
-                                            placeholder="First Name" 
-                                            type="type"
-                                            value="{{$profile->first_name}}"
-                                        >
+                                        <span class="form-control">{{$profile->first_name}}</span>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('middle_name') ? ' is-invalid' : '' }}"
-                                            name="middle_name" 
-                                            placeholder="Middle Name" 
-                                            type="type"
-                                            value="{{$profile->middle_name}}"
-                                        >
+                                        <span class="form-control">{{$profile->middle_name}}</span>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                            name="last_name" 
-                                            placeholder="Last Name" 
-                                            type="type"
-                                            value="{{$profile->last_name}}"
-                                        >
+                                        <span class="form-control">{{$profile->last_name}}</span>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input 
-                                            type="type" 
-                                            name="email" 
-                                            placeholder="Email" 
-                                            class="form-control text-center {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                            value="{{$profile->email}}"
-                                        >
+                                        <span class="form-control">{{$profile->email}}</span>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input 
-                                            class="form-control text-center {{ $errors->has('contact') ? ' is-invalid' : '' }}"
-                                            name="contact" 
-                                            placeholder="Contact" 
-                                            type="type"
-                                            value="{{$profile->contact}}"
-                                        >
+                                        <span class="form-control">{{$profile->contact}}</span>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('course') ? ' is-invalid' : '' }}"
-                                            name="course" 
-                                            placeholder="Course"
-                                            type="type"
-                                            value="{{$profile->course}}"
-                                        >
+                                        <span class="form-control">{{$profile->course}}</span>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('year') ? ' is-invalid' : '' }}"
-                                            name="year" 
-                                            placeholder="Year"
-                                            type="type"
-                                            value="{{$profile->year}}"
-                                        >
+                                        <span class="form-control">{{$profile->year}}</span>
                                     </div>
                                     <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('semester') ? ' is-invalid' : '' }}"
-                                            name="semester" 
-                                            placeholder="Semester"
-                                            type="type"
-                                            value="{{$profile->semester}}"
-                                        >
+                                        <span class="form-control">{{$profile->semester}}</span>
                                     </div>
                                 </div>
                             </div>
