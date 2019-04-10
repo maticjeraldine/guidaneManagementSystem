@@ -13,6 +13,7 @@ class CreateViolationsTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(191);
         Schema::create('violations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');

@@ -13,6 +13,7 @@ class CreateProfileViolationTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(191);
         Schema::create('profile_violation', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('profile_id');

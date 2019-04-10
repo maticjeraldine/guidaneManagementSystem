@@ -23,8 +23,12 @@ table tbody tr {
 	height: 3rem;
 }
 
+table.violation td:first-child {
+  /* width: 33%; */
+}
+
 img {
-    max-width: 100%;
+    max-width: 20rem;
 }
 
 .imagePreview {
