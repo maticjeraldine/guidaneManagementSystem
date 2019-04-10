@@ -35,6 +35,7 @@ Route::post('/violation/update/{id}', 'ViolationController@update');
 // profile reoute
 Route::get('/student', 'ProfileController@student');
 Route::get('/profile/admin', 'ProfileController@index');
+Route::get('/student/show/{id}', 'ProfileController@studentShow');
 
 
 

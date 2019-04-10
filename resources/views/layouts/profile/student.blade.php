@@ -1,34 +1,27 @@
 @extends('master')
 
 @section('page_title')
-Students
+student
 @endsection
 
 @section('content')
-<h1>Student List</h1>
+<div class="mb-5">
+    <img src="/storage/{{$student->image}}" alt="">
+</div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <td>id</td>
-            <td>name</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($students as $student)
-            <tr>
-
-                <th>{{$student->id}}</th>
-                <th>{{$student->last_name}}, {{$student->first_name}}</th>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="mb-5">
+    <p>{{$student->first_name}} {{$student->last_name}}</p>
+</div>
 
 @endsection
 
 @section('js')
 <script type="text/javascript">
-	// alert('asdasd');
+    $('select').on('change', function() {
+        var value = $('select').get(0).value;
+        var form = $('form').get(1);
+        form.setAttribute("action", `/student/update/${value}`);
+        form.submit();
+    });
 </script>
 @endsection

@@ -109,6 +109,19 @@ class ProfileController extends Controller
         ->orderBy('last_name')
         ->get();
 
-        return view('/layouts/profile/student', compact('students'));
+        return view('/layouts/profile/students', compact('students'));
+    }
+
+    /**
+     *  Display Student listing
+     * 
+     *  @param \App\Profile $profile
+     *  @return \Illuminate\Http\Response
+     */
+    public function studentShow($id) 
+    {
+        $student = Profile::find($id);
+
+        return view('/layouts/profile/student', compact('student'));
     }
 }
