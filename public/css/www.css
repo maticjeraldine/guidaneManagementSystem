@@ -90,3 +90,12 @@ img {
 	bottom: 0;
 	position: absolute;
 }
+
+.student-profile .col-md .w-100 .row {
+  position: relative;
+}
+
+.child-card .card-text {
+  max-height: 10rem;
+  overflow: hidden;
+}
