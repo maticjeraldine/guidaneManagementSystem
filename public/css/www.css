@@ -103,3 +103,14 @@ img {
   max-height: 10rem;
   overflow: hidden;
 }
+
+img.icon {
+    width: 3rem;
+}
+
+nav.navbar {
+  background-image: url('/storage/banner-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
