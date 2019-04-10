@@ -10,7 +10,7 @@ Profile
         <div class="card">
             <div class="card-header">
             {{ __('Register') }}
-            <a href="/profile/show/{{$profile->id}}" class="btn btn-info float-right text-white">
+            <a href="/profile/{{$profile->id}}" class="btn btn-info float-right text-white">
                 Edit
             </a>
             </div>

@@ -71,7 +71,7 @@ class ViolationController extends Controller
         $image->save();
 
         return back()
-            ->with('success','Book added successfully...');
+            ->with('success', 'Profile has been updated!');
     }
 
     /**

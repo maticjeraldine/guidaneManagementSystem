@@ -2,28 +2,21 @@
 
 @section('content')
 <div class="container">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="/profile/{{$profile->id}}" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PATCH')
+                        
                         <div class="student-form">
                             <div class="row">
-                                <div class="imgUp">
+                                <div class="imgUp overflow-hidden">
                                     <div class="imagePreview">
+                                        <img src="/storage/{{$profile->image}}" alt="Profile Image" class="profile-image">
                                         <label class="btn btn-primary">
                                             Upload
                                             <input 
@@ -31,7 +24,7 @@
                                                 name="image" 
                                                 style="width: 0px;height: 0px;overflow: hidden;"
                                                 type="file" 
-                                                value="Upload Photo"
+                                                value="{{$profile->image}}"
                                             >
                                         </label>
                                     </div>
@@ -195,27 +188,31 @@
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['elementary']['school']" 
                                                     type="type"
+                                                    value="{{$profile->others["'education'"]["'elementary'"]["'school'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['elementary']['location']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'elementary'"]["'location'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['elementary']['date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'elementary'"]["'date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['elementary']['awards']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'elementary'"]["'awards'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -227,28 +224,32 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['secondary']['school']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'secondary'"]["'school'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['secondary']['location']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'secondary'"]["'location'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['secondary']['date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'secondary'"]["'date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['secondary']['awards']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'secondary'"]["'awards'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -260,28 +261,32 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['college']['school']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'college'"]["'school'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['college']['location']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'college'"]["'location'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['college']['date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'college'"]["'date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['college']['awards']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'college'"]["'awards'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -293,28 +298,32 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['vocational']['school']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'vocational'"]["'school'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['vocational']['location']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'vocational'"]["'location'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['vocational']['date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'vocational'"]["'date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['education']['vocational']['awards']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'education'"]["'vocational'"]["'awards'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -344,14 +353,16 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['hobbies_interest'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'hobbies_interest'"][0]}}"
                                                 >
                                             </th>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['dreams_aspiration'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'dreams_aspiration'"][0]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -360,14 +371,16 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['hobbies_interest'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'hobbies_interest'"][1]}}"
                                                 >
                                             </th>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['dreams_aspiration'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'dreams_aspiration'"][1]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -376,14 +389,16 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['hobbies_interest'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'hobbies_interest'"][2]}}"
                                                 >
                                             </th>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['dreams_aspiration'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'dreams_aspiration'"][2]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -416,21 +431,24 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['mother']['name']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'mother'"]["'name'"]}}"                                                    
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['father']['name']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'father'"]["'name'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['guardian']['name']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'guardian'"]["'name'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -442,21 +460,24 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['mother']['address']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'mother'"]["'address'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['father']['address']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'father'"]["'address'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['guardian']['address']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'guardian'"]["'address'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -468,21 +489,24 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['mother']['contact']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'mother'"]["'contact'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['father']['contact']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'father'"]["'contact'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['guardian']['contact']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'guardian'"]["'contact'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -494,21 +518,24 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['mother']['occupation']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'mother'"]["'occupation'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['father']['occupation']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'father'"]["'occupation'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['guardian']['occupation']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'guardian'"]["'occupation'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -520,21 +547,24 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['mother']['birth_date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'mother'"]["'birth_date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['father']['birth_date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'father'"]["'birth_date'"]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['guardian']['guardian']['birth_date']" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'guardian'"]["'guardian'"]["'birth_date'"]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -569,35 +599,40 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['name'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'name'"][0]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['birth_date'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'birth_date'"][0]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['education'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'education'"][0]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['occupation'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'occupation'"][0]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['school'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'school'"][0]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -606,35 +641,40 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['name'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'name'"][1]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['birth_date'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'birth_date'"][1]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
-                                                    name="others['sibling']['education'][]" 
-                                                    type="type" 
+                                                    name="others['sibling']['education'][]"
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'education'"][1]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
-                                                    name="others['sibling']['occupation'][]" 
-                                                    type="type" 
+                                                    name="others['sibling']['occupation'][]"
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'occupation'"][1]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['school'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'school'"][1]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -643,7 +683,8 @@
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['name'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'name'"][2]}}"
                                                 >
                                             </td>
                                             <td>
@@ -651,27 +692,31 @@
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['birth_date'][]" 
                                                     type="type" 
+                                                    value="{{$profile->others["'sibling'"]["'birth_date'"][2]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['education'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'education'"][2]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['occupation'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'occupation'"][2]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['school'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'school'"][2]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -679,36 +724,41 @@
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
-                                                    name="others['sibling']['name'][]" 
-                                                    type="type" 
+                                                    name="others['sibling']['name'][]"
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'name'"][3]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['birth_date'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'birth_date'"][3]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
-                                                    name="others['sibling']['education'][]" 
-                                                    type="type" 
+                                                    name="others['sibling']['education'][]"
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'education'"][3]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['occupation'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'occupation'"][3]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['school'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'school'"][3]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -716,36 +766,41 @@
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
-                                                    name="others['sibling']['name'][]" 
-                                                    type="type" 
+                                                    name="others['sibling']['name'][]"
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'name'"][4]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['birth_date'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'birth_date'"][4]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['education'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'education'"][4]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['occupation'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'occupation'"][4]}}"
                                                 >
                                             </td>
                                             <td>
                                                 <input 
                                                     class="form-control border-0 bg-transparent"
                                                     name="others['sibling']['school'][]" 
-                                                    type="type" 
+                                                    type="type"
+                                                    value="{{$profile->others["'sibling'"]["'school'"][4]}}"
                                                 >
                                             </td>
                                         </tr>
@@ -761,7 +816,8 @@
                                         class="form-control"
                                         name="password" 
                                         placeholder="Password" 
-                                        type="password" 
+                                        type="password"
+                                        value="{{$profile->password}}"
                                     >
                                 </div>
                                 <div class="col-md-6 form-group pr-0">
@@ -769,7 +825,8 @@
                                         class="form-control"
                                         name="password_confirmation" 
                                         placeholder="Confirm Password" 
-                                        type="password" 
+                                        type="password"
+                                        value="{{$profile->password}}"
                                     >
                                 </div>
                             </div>
@@ -818,6 +875,7 @@
                     //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
                 uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
                 }
+                $('img.profile-image').remove();
             }
           
         });

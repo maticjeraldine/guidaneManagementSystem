@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 
 class ProfileController extends Controller
@@ -59,6 +62,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::find($id);
+        $profile->others = json_decode($profile->others, true);
 
         return view('/layouts/profile/show', compact('profile'));
     }
@@ -83,7 +87,58 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-       //
+        request()->validate([
+            'first_name'    =>  ['required', 'string', 'max:255'],
+            'middle_name'   =>  ['required', 'string', 'max:255'],
+            'last_name'     =>  ['required', 'string', 'max:255'],
+            'course'        =>  ['required', 'string', 'max:255'],
+            'year'          =>  ['required'],
+            'semester'      =>  ['required', 'string', 'max:255'],
+            'gender'        =>  ['required', 'string', 'max:255'],
+            'birth_date'    =>  ['required', 'string', 'max:255'],
+            'birth_place'   =>  ['required', 'string', 'max:255'],
+            'nationality'   =>  ['required', 'string', 'max:255'],
+            'contact'       =>  ['required', 'string', 'max:255'],
+            'address_city'  =>  ['required', 'string', 'max:255'],
+            'address_provincial'  =>  ['required', 'string', 'max:255'],
+            'others'        =>  ['required'],
+            'role'          =>  ['required', 'string', 'max:255'],
+            'email'         =>  ['required', 'string', 'email', 'max:255'],
+            'password'      =>  ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $file->getFilename().'.'.$extension;
+            $file = File::get($file);
+            Storage::disk('public')->put($fileName,  $file);
+
+            $profile->image = $fileName;
+        }
+
+        $profile->id                 = $profile->id;
+        $profile->first_name         = $request->first_name;
+        $profile->middle_name        = $request->middle_name;
+        $profile->last_name          = $request->last_name;
+        $profile->course             = $request->course;
+        $profile->year               = $request->year;
+        $profile->semester           = $request->semester;
+        $profile->gender             = $request->gender;
+        $profile->birth_date         = $request->birth_date;
+        $profile->birth_place        = $request->birth_place;
+        $profile->nationality        = $request->nationality;
+        $profile->contact            = $request->contact;
+        $profile->address_city       = $request->address_city;
+        $profile->address_provincial = $request->address_provincial;
+        $profile->email              = $request->email;
+        $profile->user_id            = $profile->user_id;
+        $profile->others             = json_encode($request->others);
+        
+        $profile->save();
+        
+        return back()
+            ->with('success', 'Profile has beeen updated!');
     }
 
     /**
