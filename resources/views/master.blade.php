@@ -8,10 +8,22 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand text-uppercase" href="{{ url('/') }}">
+            <a class="navbar-brand text-uppercase d-inline-flex" href="{{ url('/') }}">
                 <!-- <small>informatics guidance management system</small> -->
-                <small>informatics - GSM</small>
-            </a>
+                    <div class="icon-container">
+                        <img src="/storage/i.png" class="icon">
+                    </div>
+
+                    <div class="head-text">
+                        <small>
+                            <span>
+                                INFORMATICS COLLEGE - MANILA CAMPUS
+                                <br>
+                                GUIDANCE MANAGEMENT SYSTEM
+                            </span>
+                        </small>
+                    </div>
+                </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @guest

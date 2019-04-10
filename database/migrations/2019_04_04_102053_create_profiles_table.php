@@ -30,7 +30,8 @@ class CreateProfilesTable extends Migration
             $table->string('email');
             $table->string('address_city')->nullable();
             $table->string('address_provincial')->nullable();
-            $table->json('others')->nullable();
+            // $table->json('others')->nullable();
+            $table->text('others')->nullable(); // for mariadb
             $table->integer('user_id');
             $table->timestamps();
         });

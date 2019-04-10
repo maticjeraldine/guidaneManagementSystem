@@ -10,11 +10,11 @@ violation
         Create Violation
     </button>
 </a>
-<table class="table table-hover">
+<table class="table table-bordered violation">
     <thead>
-      <th>Image</th>
-      <th>Description</th>
-      <th>Action</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Action</th>
     </thead>
 
     <tbody>
@@ -23,8 +23,8 @@ violation
 		          	<td>
                         <img src="/storage/{{$violation->image}}" alt="">
 	              	</td>
-		          	<td>{{$violation->description}}</td>
-                    <td>
+		          	<td style="width: 40rem;">{{$violation->description}}</td>
+                    <td style="width: 5rem">
                         <a href="/violation/show/{{$violation->id}}">view</a>
                     </td>
 		        </tr>
