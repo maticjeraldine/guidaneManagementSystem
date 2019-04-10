@@ -120,8 +120,13 @@ class ProfileController extends Controller
      */
     public function studentShow($id) 
     {
-        $student = Profile::find($id);
+        $profile = Profile::find($id);
 
-        return view('/layouts/profile/student', compact('student'));
+        $violations = DB::table('violations')
+        ->join('profile_violation', 'violations.id', '=', 'profile_violation.violation_id')
+        ->where('profile_violation.profile_id', $profile->id)
+        ->get();
+
+        return view('/layouts/profile/student', compact('profile', 'violations'));
     }
 }
