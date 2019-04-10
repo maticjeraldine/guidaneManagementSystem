@@ -8,7 +8,13 @@ Profile
 <div class="row justify-content-center student-profile">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Register') }}</div>
+            <div class="card-header">
+                {{ __('Register') }}
+                
+                <a href="/profile/{{$profile->id}}" class="btn btn-info float-right text-white">
+                    Edit
+                </a>    
+            </div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -33,7 +39,7 @@ Profile
                         <div class="col-md">
                             <div class="w-100 text-center">
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <input 
                                             class="form-control {{ $errors->has('first_name') ? ' is-invalid' : '' }}"
                                             name="first_name" 
@@ -42,16 +48,7 @@ Profile
                                             value="{{$profile->first_name}}"
                                         >
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <input 
-                                            class="form-control {{ $errors->has('middle_name') ? ' is-invalid' : '' }}"
-                                            name="middle_name" 
-                                            placeholder="Middle Name" 
-                                            type="type"
-                                            value="{{$profile->middle_name}}"
-                                        >
-                                    </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group">
                                         <input 
                                             class="form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}"
                                             name="last_name" 

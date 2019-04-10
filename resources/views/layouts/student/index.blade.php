@@ -16,66 +16,67 @@ Profile
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-
-                        <div class="imgUp">
-                            <div class="imagePreview">
-                                <img src="/storange/{{$profile->image}}" alt="">
-                            </div>
+                <div class="row">
+                    <div class="imgUp">
+                        <div class="imagePreview overflow-hidden">
+                            <img src="/storage/{{$profile->image}}" alt="">
                         </div>
+                    </div>
 
-                        <div class="col-md">
-                            <div class="w-100 text-center">
-                                <div class="row">
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->first_name}}</span>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->middle_name}}</span>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->last_name}}</span>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <span class="form-control">{{$profile->email}}</span>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <span class="form-control">{{$profile->contact}}</span>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->course}}</span>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->year}}</span>
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <span class="form-control">{{$profile->semester}}</span>
-                                    </div>
+                    <div class="col-md">
+                        <div class="w-100 text-center">
+                            <div class="row">
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->first_name}}</span>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->middle_name}}</span>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->last_name}}</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <span class="form-control">{{$profile->email}}</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <span class="form-control">{{$profile->contact}}</span>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->course}}</span>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->year}}</span>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <span class="form-control">{{$profile->semester}}</span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </form>
-
+                </div>
 
                 <div class="row violation">
-                    <div class="d-block w-100">
-                        <h2 class="text-center text-uppercase">violations:</h2>
-                    </div>
-                    @foreach($violations as $violation)
-                        <div class="card col-md-4 child-card">
-                            <img class="card-img-top" src="/storage/{{$violation->image}}" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{$violation->description}}
-                                </p>
-                                <a href="/violation/show/{{$violation->violation_id}}" class="btn btn-primary">View</a>
-                            </div>
+                    @if(count($violations) > 0)
+
+                        <div class="d-block w-100">
+                            <h2 class="text-center text-uppercase">violations:</h2>
                         </div>
-                    @endforeach
+                            @foreach($violations as $violation)
+                            <div class="card col-md-4 child-card">
+                                <img class="card-img-top" src="/storage/{{$violation->image}}" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{$violation->description}}
+                                    </p>
+                                    <a href="/violation/show/{{$violation->violation_id}}" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="d-block w-100">
+                            <h2 class="text-center text-uppercase">no violations</h2>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
